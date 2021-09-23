@@ -1,20 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/15 17:54:41 by keddib            #+#    #+#             */
-/*   Updated: 2021/07/15 17:54:43 by keddib           ###   ########.fr       */
+/*   Created: 2021/09/23 15:37:05 by keddib            #+#    #+#             */
+/*   Updated: 2021/09/23 15:37:22 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
-
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
-
-#endif
+/// this where I will pull my examples
