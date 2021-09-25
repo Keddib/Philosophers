@@ -6,11 +6,19 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 11:58:36 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/25 16:13:36 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/25 18:34:52 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+uint64_t	get_time_in_ms(void)
+{
+	struct timeval	tv;
+	gettimeofday(&tv, NULL);
+	// convert tv_sec & tv_usec to millisecond
+	return ((tv.tv_sec) * 1000 + (tv.tv_usec) / 1000);
+}
 
 int	ft_atoi(char *str)
 {
@@ -81,5 +89,8 @@ int	check_args(char **args, int n, t_data *data)
 	else
 		data->last_arg = 0;
 	// create n of forks required;
+	data->forks = malloc((data->n_philo + 1) * sizeof(pthread_mutex_t));
+	for (int i = 0; i < data->n_philo; i++)
+		pthread_mutex_init(&data->forks[i], NULL);
 	return (0);
 }

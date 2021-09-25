@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 17:46:35 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/25 16:06:55 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/25 18:39:23 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,6 @@
 # include <pthread.h>
 # include <stdio.h>
 
-typedef struct	s_philo
-{
-	uint64_t	last_eat;
-	int			n_time_eats;
-	int			ph_id;
-	t_data		*data;
-
-}				t_philo;
-
 typedef struct	s_data
 {
 	int	n_philo;
@@ -37,9 +28,20 @@ typedef struct	s_data
 	int	time_sleep;
 	int	notepme;
 	int	last_arg;
+	int	is_philo_dead;
 	pthread_mutex_t	*forks;
 }				t_data;
 
-int	check_args(char **args, int n, t_data *data);
+typedef struct	s_philo
+{
+	uint64_t	last_eat;
+	int			n_time_eats;
+	int			ph_id;
+	t_data		*data;
+}				t_philo;
+
+int			check_args(char **args, int n, t_data *data);
+void		*philosopher(void *arg);
+uint64_t	get_time_in_ms(void);
 
 #endif
