@@ -5,30 +5,34 @@
 #                                                     +:+ +:+         +:+      #
 #    By: keddib <keddib@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/07/15 17:44:01 by keddib            #+#    #+#              #
-#    Updated: 2021/09/24 13:26:34 by keddib           ###   ########.fr        #
+#    Created: 2021/09/25 14:24:46 by keddib            #+#    #+#              #
+#    Updated: 2021/09/25 15:04:43 by keddib           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= philo
 
-SRC				= philo/
+NAME		= 	philo
 
-OBJ			=
+SRCS 		=	philo.c \
+				check_args.c
 
-GCC				= gcc -Wall -Wextra -Werror -pthread
+OBJ			=	philo.o \
+				check_args.o
+
+GO			=	gcc -Wall -Wextra -Werror -pthread -fsanitize=address -g3
 
 all:	$(NAME)
 
-$(NAME) : $(SRCS)
-	@$(GCC) -o $(NAME) $(SRCS)
+$(NAME): $(SRCS)
+		@$(GO) -c $(SRCS)
+		@$(GO) -o $(NAME) $(OBJ)
 
 clean:
 	@rm -rf $(OBJ)
 
 fclean: clean
-	@rm $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean all
 
-.PHONY: clean fclean re all $(GNL)
+.PHONY: clean fclean re all
