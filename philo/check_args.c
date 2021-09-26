@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 11:58:36 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/25 18:34:52 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/26 10:39:26 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 uint64_t	get_time_in_ms(void)
 {
 	struct timeval	tv;
+
 	gettimeofday(&tv, NULL);
-	// convert tv_sec & tv_usec to millisecond
 	return ((tv.tv_sec) * 1000 + (tv.tv_usec) / 1000);
 }
 
@@ -30,17 +30,17 @@ int	ft_atoi(char *str)
 	p = 1;
 	r = 0;
 	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
-			i++;
+		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{
-			if (str[i] == '-')
-					p = -1;
-			i++;
+		if (str[i] == '-')
+			p = -1;
+		i++;
 	}
 	while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9')
 	{
-			r = r * 10 + str[i] - '0';
-			i++;
+		r = r * 10 + str[i] - '0';
+		i++;
 	}
 	return (r * p);
 }
@@ -58,7 +58,7 @@ int	is_digit(char *s)
 
 int	is_args_digit(char **args)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (args[i])
@@ -73,24 +73,26 @@ int	is_args_digit(char **args)
 int	check_args(char **args, int n, t_data *data)
 {
 	if ((n != 5 && n != 6) || !is_args_digit(args))
-	{
-			printf("ARGS ERROR\n");
-			return (1);
-	}
+		return (printf("ARGS ERROR\n"));
+	data->is_philo_dead = 0;
+	data->time = get_time_in_ms();
 	data->n_philo = ft_atoi(args[0]);
 	data->time_die = ft_atoi(args[1]);
 	data->time_eat = ft_atoi(args[2]);
 	data->time_sleep = ft_atoi(args[3]);
 	if (n == 6)
 	{
-		data->notepme = ft_atoi(args[4]);
+		data->n_time_must_eat = ft_atoi(args[4]);
 		data->last_arg = 1;
 	}
 	else
 		data->last_arg = 0;
-	// create n of forks required;
-	data->forks = malloc((data->n_philo + 1) * sizeof(pthread_mutex_t));
-	for (int i = 0; i < data->n_philo; i++)
-		pthread_mutex_init(&data->forks[i], NULL);
+	if (data->last_arg && (data->n_time_must_eat == 0))
+		return (1);
+	n = 0;
+	data->forks = malloc(data->n_philo * sizeof(pthread_mutex_t));
+	pthread_mutex_init(&data->m_print, NULL);
+	while (n < data->n_philo)
+		pthread_mutex_init(&data->forks[n++], NULL);
 	return (0);
 }

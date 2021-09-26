@@ -6,12 +6,15 @@ Structure :
 +	-> check that args are nums
 +	-> initilize philo struct;
 
--	2 create threads :
++	2 create threads :
 +	-> print philo id
--	-> orgnize forks
--	-> eating
--	-> sleeping
--	-> thinking
++	-> orgnize forks
++	-> eating
++	-> sleeping
++	-> thinking
+
+-	time delay problem
+-	-> need to know whats the problen
 
 -	3 check if any philo dies:
 -	-> check death;
@@ -21,5 +24,4 @@ Structure :
 
 need to know :
 
- - how to protect printf ??
- - how to 
+ + how to protect printf ?? // mutex

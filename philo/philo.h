@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 17:46:35 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/25 18:39:23 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/26 10:37:59 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,21 @@
 # include <pthread.h>
 # include <stdio.h>
 
-typedef struct	s_data
+typedef struct s_data
 {
-	int	n_philo;
-	int	time_die;
-	int	time_eat;
-	int	time_sleep;
-	int	notepme;
-	int	last_arg;
-	int	is_philo_dead;
+	int				n_philo;
+	int				time_die;
+	int				time_eat;
+	int				time_sleep;
+	int				n_time_must_eat;
+	int				last_arg;
+	int				is_philo_dead;
+	uint64_t		time;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	m_print;
 }				t_data;
 
-typedef struct	s_philo
+typedef struct s_philo
 {
 	uint64_t	last_eat;
 	int			n_time_eats;

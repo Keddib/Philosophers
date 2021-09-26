@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Mutex.c                                            :+:      :+:    :+:   */
+/*   mutex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/24 17:36:59 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/25 10:00:33 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/26 10:20:18 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,12 @@ void *thread_func(void *arg)
 	for (j = 0; j < loops; j++)
 	{
 		//lock mutex ;
+		clock_t t;
+    	t = clock();
 		pthread_mutex_lock(&mutex);
+		t = clock() - t;
+		double time_taken = ((double)t)/CLOCKS_PER_SEC;
+		printf("fun() took %f seconds to execute \n", time_taken);
 		glob++;
 		pthread_mutex_unlock(&mutex);
 		// unlock mutex
@@ -44,12 +49,12 @@ int main(int argc, char *argv[])
 	loops = (argc > 1)? atoi(argv[1]) : 10000;
 	if (pthread_create(&t1, NULL, thread_func, &loops))
 		printf("create 1 Error\n");
-	if (pthread_create(&t2, NULL, thread_func, &loops))
-		printf("create 2 Error\n");
+	// if (pthread_create(&t2, NULL, thread_func, &loops))
+	// 	printf("create 2 Error\n");
 	if (pthread_join(t1, NULL))
 		printf("join 1 Error\n");
-	if (pthread_join(t2, NULL))
-		printf("join 2 Error\n");
+	// if (pthread_join(t2, NULL))
+	// 	printf("join 2 Error\n");
 
 	printf("glob = %d\n", glob);
 	return(0);
