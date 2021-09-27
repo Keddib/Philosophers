@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/25 11:58:36 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/26 10:39:26 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/27 10:24:14 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,11 @@ int	is_args_digit(char **args)
 
 int	check_args(char **args, int n, t_data *data)
 {
+	int	last_arg;
+
 	if ((n != 5 && n != 6) || !is_args_digit(args))
 		return (printf("ARGS ERROR\n"));
-	data->is_philo_dead = 0;
+	g_is_philo_dead = 0;
 	data->time = get_time_in_ms();
 	data->n_philo = ft_atoi(args[0]);
 	data->time_die = ft_atoi(args[1]);
@@ -83,11 +85,11 @@ int	check_args(char **args, int n, t_data *data)
 	if (n == 6)
 	{
 		data->n_time_must_eat = ft_atoi(args[4]);
-		data->last_arg = 1;
+		last_arg = 1;
 	}
 	else
-		data->last_arg = 0;
-	if (data->last_arg && (data->n_time_must_eat == 0))
+		last_arg = 0;
+	if (last_arg && (data->n_time_must_eat == 0))
 		return (1);
 	n = 0;
 	data->forks = malloc(data->n_philo * sizeof(pthread_mutex_t));

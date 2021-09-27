@@ -6,12 +6,11 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 15:37:05 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/26 17:34:59 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/27 13:05:29 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
 
 void	create_philos(t_data *data, t_philo *philo, pthread_t *thread, int i)
 {
@@ -43,35 +42,9 @@ int main(int argc, char *argv[])
 	create_philos(&data, philo, thread, 0);
 	usleep(1000);
 	create_philos(&data, philo, thread, 1);
-
-	uint64_t now, strv;
-	int n_must_eat;
-
-	while (1)
-	{
-		n_must_eat = 0;
-		for (int i = 0; i < data.n_philo; i++)
-		{
-			now = get_time_in_ms();
-			// printf("now = %llu\n", now);
-			// printf("last = %llu\n", philo[i].last_eat);
-			strv = now - philo[i].last_eat;
-			// printf("strv = %llu\n", strv);
-
-			// printf("t_die = %llu\n", (uint64_t)data.time_die);
-			pthread_mutex_lock(&philo[i].m_eat);
-			if (strv > (uint64_t)data.time_die)
-			{
-				//
-				printf("%.6llu Philo %.3d : died\n", get_time_in_ms() - data.time, philo[i].ph_id + 1);
-				data.is_philo_dead = 1;
-				return (0);
-			}
-			pthread_mutex_unlock(&philo[i].m_eat);
-			n_must_eat++;
-		}
-		usleep(1e3);
-		// if must eat == n_philo that means all philos reached the n must eat;
-	}
+	supervisor(philo, data);
+	free(data.forks);
+	free(thread);
+	free(philo);
 	return (0);
 }

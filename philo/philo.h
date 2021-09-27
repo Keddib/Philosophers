@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/15 17:46:35 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/26 17:55:49 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/27 12:16:40 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ typedef struct s_data
 	int				time_eat;
 	int				time_sleep;
 	int				n_time_must_eat;
-	int				last_arg;
-	int				is_philo_dead;
 	uint64_t		time;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	m_print;
@@ -43,10 +41,13 @@ typedef struct s_philo
 	t_data			*data;
 }				t_philo;
 
+int			g_is_philo_dead;
+
 int			check_args(char **args, int n, t_data *data);
 void		*philosopher(void *arg);
 uint64_t	get_time_in_ms(void);
 void		ms_sleep(uint64_t time_eat);
 void		print_philo_status(t_philo *philo, int msg);
+int			supervisor(t_philo *philo, t_data data);
 
 #endif

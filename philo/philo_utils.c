@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 17:54:41 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/26 17:55:16 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/27 13:05:05 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	print_philo_status(t_philo *philo, int msg)
 	uint64_t time;
 	char *message;
 
-	message = "Died";
 	if (msg == 1)
 		message = "has taken a fork";
 	else if (msg == 2)
@@ -36,13 +35,15 @@ void	print_philo_status(t_philo *philo, int msg)
 		message = "is sleeping";
 	else if (msg == 4)
 		message = "is thinking";
-	pthread_mutex_lock(&philo->data->m_print);
 	time = get_time_in_ms() - philo->data->time;
 	if (msg == 2)
 	{
-		philo->last_eat = get_time_in_ms();
 		pthread_mutex_lock(&philo->m_eat);
+		philo->last_eat = get_time_in_ms();
 	}
+	pthread_mutex_lock(&philo->data->m_print);
+	if (g_is_philo_dead)
+		return ;
 	printf("%.6llu Philo %.3d : %s\n", time, philo->ph_id + 1, message);
 	pthread_mutex_unlock(&philo->data->m_print);
 }
