@@ -1,28 +1,16 @@
-# Philosophers
+# Dining Philosophers
 
-Structure :
+[![Build Status](]()
 
-+	1 parse:
-+	-> check that args are nums
-+	-> initilize philo struct;
+The classic concurrency problem, in C.
 
-+	2 create threads :
-+	-> print philo id
-+	-> orgnize forks
-+	-> eating
-+	-> sleeping
-+	-> thinking
+## Trying it out
 
-+	time delay problem
-+	-> need to know whats the problen // the problen was in usleep
+```bash
+$ git clone https://github.com/Keddib/Philosophers.git
+$ cd Philosophers
+$ make
+```
 
--	3 check if any philo dies:
-+	-> check death;
--	-> create a mutex for eating so we don't keel a philo while eating
--	-> check if all philos eat umber_of_times_each_philosopher_must_ea;
-
-
-
-need to know :
-
- + how to protect printf ?? // mutex
+NOTE : the program takes 5 parameters. [the 5th is optional]
+["number_of_philosophers", "time_to_die", "time_to_eat", "time_to_sleep", "umber_of_times_each_philosopher_must_eat"]
