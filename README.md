@@ -1,7 +1,5 @@
 # Dining Philosophers
 
-[![Build Status](]()
-
 The classic concurrency problem, in C.
 
 ## Trying it out
