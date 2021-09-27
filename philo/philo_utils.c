@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 17:54:41 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/27 13:05:05 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/27 13:15:26 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 void	ms_sleep(uint64_t time_eat)
 {
-	uint64_t lasttime;
+	uint64_t	lasttime;
 
 	lasttime = get_time_in_ms();
 	usleep((time_eat * 1000) - 20000);
 	while ((get_time_in_ms() - lasttime) < time_eat)
-		continue;
+		continue ;
 }
 
 void	print_philo_status(t_philo *philo, int msg)
 {
-	uint64_t time;
-	char *message;
+	uint64_t	time;
+	char		*message;
 
 	if (msg == 1)
 		message = "has taken a fork";

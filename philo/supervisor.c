@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/27 12:18:12 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/27 13:12:27 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/27 14:50:31 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,13 @@ int	supervisor(t_philo *philo, t_data data)
 		while (i < data.n_philo)
 		{
 			pthread_mutex_lock(&philo[i].m_eat);
-			if ((get_time_in_ms() - philo[i].last_eat) > (uint64_t)data.time_die)
+			if ((get_time_in_ms() - philo[i].last_eat)
+				> (uint64_t)data.time_die)
 			{
 				pthread_mutex_lock(&philo[i].data->m_print);
 				g_is_philo_dead = 1;
-				printf("%.6llu Philo %.3d : died\n", get_time_in_ms() - data.time, philo[i].ph_id + 1);
+				printf("%.6llu Philo %.3d : died\n", get_time_in_ms()
+					- data.time, philo[i].ph_id + 1);
 				return (1);
 			}
 			pthread_mutex_unlock(&philo[i++].m_eat);

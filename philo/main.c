@@ -6,7 +6,7 @@
 /*   By: keddib <keddib@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/23 15:37:05 by keddib            #+#    #+#             */
-/*   Updated: 2021/09/27 13:05:29 by keddib           ###   ########.fr       */
+/*   Updated: 2021/09/27 13:14:49 by keddib           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	create_philos(t_data *data, t_philo *philo, pthread_t *thread, int i)
 	}
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	int			i;
 	t_data		data;
